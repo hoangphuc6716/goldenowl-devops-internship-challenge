@@ -62,7 +62,7 @@ resource "aws_instance" "app" {
 resource "aws_eip" "app_eip" {
   instance = aws_instance.app.id
   domain   = "vpc"
-  
+
   tags = {
     Name = "goldenowl-app-static-ip"
   }
