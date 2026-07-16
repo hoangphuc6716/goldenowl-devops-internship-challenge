@@ -11,7 +11,6 @@ provider "aws" {
   region = var.aws_region
 }
 
-
 resource "aws_security_group" "app" {
   name        = "goldenowl-app-sg"
   description = "Allow SSH and app traffic"
@@ -39,7 +38,6 @@ resource "aws_security_group" "app" {
   }
 }
 
-
 resource "aws_instance" "app" {
   ami                    = var.ami_id
   instance_type          = var.instance_type
@@ -58,5 +56,14 @@ resource "aws_instance" "app" {
 
   tags = {
     Name = "goldenowl-app"
+  }
+}
+
+resource "aws_eip" "app_eip" {
+  instance = aws_instance.app.id
+  domain   = "vpc"
+  
+  tags = {
+    Name = "goldenowl-app-static-ip"
   }
 }
