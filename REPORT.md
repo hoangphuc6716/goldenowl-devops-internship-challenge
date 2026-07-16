@@ -1,6 +1,4 @@
-# Báo cáo dự án - Golden Owl DevOps Internship Technical Test
-
-**Người thực hiện:** Hoang Phuc
+# Golden Owl DevOps Internship Technical Test
 
 
 ## 1. Tổng quan 
@@ -30,6 +28,7 @@ Khi có thay đổi được đẩy lên nhánh feature, pipeline sẽ tự đ�
 
 ## 3. Kiến trúc hệ thống
 
+<img width="1227" height="642" alt="golden-owl-overview drawio" src="https://github.com/user-attachments/assets/71067076-c19a-4cc5-8a82-7acb97fba92e" />
 
 
 ### Tài nguyên AWS được cấp phát bởi Terraform
@@ -59,7 +58,7 @@ Khi có thay đổi được đẩy lên nhánh feature, pipeline sẽ tự đ�
 
 **Ảnh minh chứng - Pipeline CI chạy thành công trên tab Actions:**
 
-![Kết quả chạy CI thành công](./images/02-ci-success.png)
+![Kết quả chạy CI thành công] 
 
 ### Chi tiết pipeline CD (`cd.yml`)
 
