@@ -165,7 +165,8 @@ terraform init
 terraform plan
 terraform apply         
 ```
-<img width="1161" height="543" alt="image" src="https://github.com/user-attachments/assets/e5453e9f-1387-4362-aeed-75c0e10eb662" />
+<img width="1252" height="306" alt="image" src="https://github.com/user-attachments/assets/237280c1-4796-4d2e-bdc2-5f230b441028" />
+
 
 ### Kích hoạt CI/CD
 
