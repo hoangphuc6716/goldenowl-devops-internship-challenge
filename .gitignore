@@ -1,0 +1,7 @@
+# Terraform state (chứa thông tin nhạy cảm)
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+terraform/terraform.tfvars
+goldenowl-key.pem

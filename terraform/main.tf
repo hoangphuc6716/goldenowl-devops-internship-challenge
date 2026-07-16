@@ -16,7 +16,6 @@ resource "aws_security_group" "app" {
   name        = "goldenowl-app-sg"
   description = "Allow SSH and app traffic"
 
-  # SSH
   ingress {
     from_port   = 22
     to_port     = 22
