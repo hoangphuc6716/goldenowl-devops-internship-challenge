@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: ['feature/**', 'feat/**', 'develop', 'master']
+    branches: ['feature/**', 'feat/**', 'develop']
   pull_request:
     branches: [master, develop]
 
@@ -24,7 +24,7 @@ jobs:
       - run: npm run lint:check
       - run: npm run format:check
       - run: npm test
-      
+
 # Job 2: Build Docker image va push len Docker Hub
   build:
     runs-on: ubuntu-latest
