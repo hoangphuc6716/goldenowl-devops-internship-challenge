@@ -11,10 +11,12 @@ provider "aws" {
   region = var.aws_region
 }
 
+# ── Security Group ─────────────────────────────────────────────────
 resource "aws_security_group" "app" {
   name        = "goldenowl-app-sg"
   description = "Allow SSH and app traffic"
 
+  # SSH
   ingress {
     from_port   = 22
     to_port     = 22
@@ -38,6 +40,7 @@ resource "aws_security_group" "app" {
   }
 }
 
+# ── EC2 Instance ───────────────────────────────────────────────────
 resource "aws_instance" "app" {
   ami                    = var.ami_id
   instance_type          = var.instance_type
@@ -56,14 +59,5 @@ resource "aws_instance" "app" {
 
   tags = {
     Name = "goldenowl-app"
-  }
-}
-
-resource "aws_eip" "app_eip" {
-  instance = aws_instance.app.id
-  domain   = "vpc"
-
-  tags = {
-    Name = "goldenowl-app-static-ip"
   }
 }
