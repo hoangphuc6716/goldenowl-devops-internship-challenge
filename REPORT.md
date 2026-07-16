@@ -104,15 +104,15 @@ terraform/
 └── terraform.tfvars    # Giá trị các biến (tự động load)
 ```
 
-**Ảnh minh chứng - Kết quả chạy `terraform apply`:**
+** Kết quả chạy `terraform apply`:**
 
-![Kết quả terraform apply] (<img width="1063" height="325" alt="image" src="https://github.com/user-attachments/assets/f3341ecf-88d9-4213-ab2a-5ef83ec47b4d" />)
+<img width="1252" height="306" alt="image" src="https://github.com/user-attachments/assets/c4efd7d0-ba68-4a88-946a-aa530429a94b" />
 
 
-**Ảnh minh chứng - EC2 instance đang chạy trên AWS Console:**
+**EC2 instance đang chạy trên AWS Console:**
 
-![EC2 instance trên AWS Console](<img width="1917" height="850" alt="image" src="https://github.com/user-attachments/assets/158e1ecf-1bc1-4362-8bbd-07d89878e11f" />
-)
+<img width="1917" height="850" alt="image" src="https://github.com/user-attachments/assets/158e1ecf-1bc1-4362-8bbd-07d89878e11f" />
+
 
 ### Script khởi tạo EC2 (user_data)
 
@@ -152,7 +152,7 @@ npm start
 ```bash
 docker build -t goldenowl-app .
 docker run -d -p 3000:3000 --name app goldenowl-app
-curl localhost:3000       # {"message":"Welcome warriors to Golden Owl!"}
+curl localhost:3000      
 ```
 <img width="1206" height="623" alt="image" src="https://github.com/user-attachments/assets/3750543d-31f1-4921-a08e-c0bf23f67b17" />
 <img width="1177" height="190" alt="image" src="https://github.com/user-attachments/assets/69b07e85-ea10-45eb-bfce-99e0334cfc89" />
