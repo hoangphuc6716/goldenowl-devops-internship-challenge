@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: ['feature/**', 'feat/**', 'develop', 'master']
+  pull_request:
+    branches: [master, develop]
+
+jobs:
+    # Job 1: Kiem tra code 
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./src
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: src/package-lock.json
+      - run: npm ci
+      - run: npm run lint:check
+      - run: npm run format:check
+      - run: npm test
+      
+# Job 2: Build Docker image va push len Docker Hub
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+    
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - run: docker build -t hoangphuc858903/goldenowl-app:latest .
+      - run: |
+          docker run -d -p 3000:3000 --name app hoangphuc858903/goldenowl-app:latest
+          sleep 5 && curl -f http://localhost:3000
+      - name: Push image to Docker Hub
+        run: docker push hoangphuc858903/goldenowl-app:latest
