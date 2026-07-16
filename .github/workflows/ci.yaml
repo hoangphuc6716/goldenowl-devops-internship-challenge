@@ -7,7 +7,7 @@ on:
     branches: [master, develop]
 
 jobs:
-    # Job 1: Kiem tra code 
+  # Job 1: Kiem tra code cua ung dung 
   test:
     runs-on: ubuntu-latest
     defaults:
@@ -25,10 +25,32 @@ jobs:
       - run: npm run format:check
       - run: npm test
 
-# Job 2: Build Docker image va push len Docker Hub
+  # Job 2: Kiem tra code cua phan terraform
+  terraform-check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./terraform
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        
+      - name: Terraform Init
+        run: terraform init
+        
+      - name: Terraform Format
+        run: terraform fmt -check
+        
+      - name: Terraform Validate
+        run: terraform validate
+
+  # Job 3: Build Docker image va push len Docker Hub
+  
   build:
     runs-on: ubuntu-latest
-    needs: test
+    needs: [test, terraform-check]
     steps:
       - uses: actions/checkout@v4
     
@@ -37,9 +59,12 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+          
       - run: docker build -t hoangphuc858903/goldenowl-app:latest .
+      
       - run: |
           docker run -d -p 3000:3000 --name app hoangphuc858903/goldenowl-app:latest
           sleep 5 && curl -f http://localhost:3000
+          
       - name: Push image to Docker Hub
         run: docker push hoangphuc858903/goldenowl-app:latest
